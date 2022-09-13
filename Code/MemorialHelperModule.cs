@@ -1,20 +1,11 @@
-﻿namespace Celeste.Mod.MemorialHelper
-{
-    public class MemorialModule : EverestModule
-    {
-
-        // Only one alive module instance can exist at any given time.
+﻿namespace Celeste.Mod.MemorialHelper {
+    public class MemorialModule : EverestModule {
         public static MemorialModule Instance;
 
-        public MemorialModule()
-        {
+        public MemorialModule() {
             Instance = this;
         }
-        public override void Load()
-        {
-        }
-        public override void Unload()
-        {
-        }
+        public override void Load() { }
+        public override void Unload() { }
     }
 }

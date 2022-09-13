@@ -7,32 +7,24 @@ namespace Celeste.Mod.MemorialHelper {
     [Tracked(false)]
     [CustomEntity("MemorialHelper/ParallaxText")]
     public class ParallaxText : Entity {
-        //I spent hours looking for non-existent mistakes in my parallax equation
-        //		only to find out the position system for text has an arbitrary scalar of 6.
-        private static readonly Vector2 camCenterOffset = new Vector2(160f, 90f);
+        private static readonly Vector2 camCenterOffset = new(160f, 90f);
         private static readonly float camScalar = 6f;
 
         private readonly Vector2 centerPos;
-
         private readonly string[] text;
         private readonly Vector2 textCenterPos;
         private readonly Vector2 textCenterOffset;
         private readonly bool outline;
-
         private readonly bool noFlag;
         private readonly string flag;
-
         private readonly Vector2 halfSize;
         private readonly Vector2 zeroAlphaDistance;
-
         private readonly Vector2 parallaxScalar;
-
-        private float alpha;
-
         private readonly Vector2 textScalar;
         private readonly Color textColor;
         private readonly Color borderColor;
 
+        private float alpha;
 
         public ParallaxText(EntityData data, Vector2 offset) : base(data.Position + offset) {
             Tag = Tags.HUD;
@@ -45,15 +37,13 @@ namespace Celeste.Mod.MemorialHelper {
             //The 'error text' is part of the SC2020 hunt. If you get it unexpectedly, it means
             //		that the text you placed has no 'dialog' attribute, likely an ahorn/lonn integration error
             text = data.Has("dialog") ? Dialog.Clean(data.Attr("dialog", "app_ending")).Split(new char[] { '\n', '\r' }, StringSplitOptions.None) : new string[] { "Extract the zip", "Find 'gymBG'", "Then open it as", "a .txt" };
-            float textWidth = 0f;
             foreach (string line in text) {
                 Vector2 lineSize = ActiveFont.Measure(line);
-                float width = Math.Max(lineSize.X, textWidth);
                 textSize.Y += lineSize.Y * textScalar.Y;
             }
 
             textSize.X = 0;//textWidth * textScalar.X
-            textCenterOffset = textSize / 2 - new Vector2(data.Float("offsetX"), data.Float("offsetY")) * camScalar;
+            textCenterOffset = (textSize / 2) - (new Vector2(data.Float("offsetX"), data.Float("offsetY")) * camScalar);
 
             outline = data.Bool("border");
 
@@ -61,9 +51,9 @@ namespace Celeste.Mod.MemorialHelper {
 
             centerPos = halfSize + data.Position + offset;
             textCenterPos = data.Nodes.Length == 0 ? centerPos : data.Nodes[0] + offset;
-            parallaxScalar = new Vector2(data.Float("parallaxX"), data.Float("parallaxY"));
+            parallaxScalar = new Vector2(data.Float("parallaxX", 1.75f), data.Float("parallaxY", 1.75f));
 
-            zeroAlphaDistance = new Vector2(Math.Max(0f, data.Float("visibleDistanceX")), Math.Max(0f, data.Float("visibleDistanceY", 1f))) + halfSize;
+            zeroAlphaDistance = new Vector2(Math.Max(0f, data.Float("visibleDistanceX", 32f)), Math.Max(0f, data.Float("visibleDistanceY", 32f))) + halfSize;
 
             flag = data.Attr("flag");
             noFlag = flag.Length == 0;
@@ -79,6 +69,7 @@ namespace Celeste.Mod.MemorialHelper {
             if (entity != null) {
                 alpha = Ease.CubeInOut(Calc.ClampedMap(Math.Abs(entity.Center.X - centerPos.X), halfSize.X, zeroAlphaDistance.X, 1f, 0f) * Calc.ClampedMap(Math.Abs(entity.Center.Y - centerPos.Y), halfSize.Y, zeroAlphaDistance.Y, 1f, 0f));
             }
+
             base.Update();
         }
 
@@ -87,21 +78,22 @@ namespace Celeste.Mod.MemorialHelper {
                 Camera cam = SceneAs<Level>().Camera;
 
                 //parallax equation
-                Vector2 pos = camScalar * (Vector2.Multiply(parallaxScalar, textCenterPos - cam.Position - camCenterOffset) + camCenterOffset) - textCenterOffset;
+                Vector2 pos = (camScalar * (Vector2.Multiply(parallaxScalar, textCenterPos - cam.Position - camCenterOffset) + camCenterOffset)) - textCenterOffset;
 
-                if (SaveData.Instance != null && SaveData.Instance.Assists.MirrorMode)
+                if (SaveData.Instance != null && SaveData.Instance.Assists.MirrorMode) {
                     pos.X = 1920f - pos.X;
-
+                }
 
                 foreach (string line in text) {
-                    if (outline)
+                    if (outline) {
                         ActiveFont.DrawOutline(line, pos, new Vector2(0.5f, 0f), textScalar, textColor * alpha, 2f, borderColor * (alpha * alpha));
-                    else
+                    } else {
                         ActiveFont.Draw(line, pos, new Vector2(0.5f, 0f), textScalar, textColor * alpha);
+                    }
+
                     pos += ActiveFont.Measure(line).Y * textScalar.YComp();
                 }
             }
         }
-
     }
 }
