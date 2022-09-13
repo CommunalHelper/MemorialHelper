@@ -26,7 +26,8 @@ namespace Celeste.Mod.MemorialHelper {
 
         private float alpha;
 
-        public ParallaxText(EntityData data, Vector2 offset) : base(data.Position + offset) {
+        public ParallaxText(EntityData data, Vector2 offset) 
+            : base(data.Position + offset) {
             Tag = Tags.HUD;
 
             Vector2 textSize = Vector2.Zero;
@@ -36,7 +37,9 @@ namespace Celeste.Mod.MemorialHelper {
 
             //The 'error text' is part of the SC2020 hunt. If you get it unexpectedly, it means
             //		that the text you placed has no 'dialog' attribute, likely an ahorn/lonn integration error
-            text = data.Has("dialog") ? Dialog.Clean(data.Attr("dialog", "app_ending")).Split(new char[] { '\n', '\r' }, StringSplitOptions.None) : new string[] { "Extract the zip", "Find 'gymBG'", "Then open it as", "a .txt" };
+            text = data.Has("dialog") ? 
+                Dialog.Clean(data.Attr("dialog", "app_ending")).Split(new char[] { '\n', '\r' }, StringSplitOptions.None) : 
+                new string[] { "Extract the zip", "Find 'gymBG'", "Then open it as", "a .txt" };
             foreach (string line in text) {
                 Vector2 lineSize = ActiveFont.Measure(line);
                 textSize.Y += lineSize.Y * textScalar.Y;
