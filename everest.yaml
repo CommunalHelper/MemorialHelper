@@ -1,5 +1,5 @@
 - Name: memorialHelper
-  Version: 1.0.3
+  Version: 1.0.4
   DLL: Code/bin/MemorialHelper.dll
   Dependencies:
     - Name: Everest

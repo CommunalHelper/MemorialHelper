@@ -43,5 +43,6 @@ jobs:
         path: |
           Ahorn
           Code/bin
+          Loenn
           everest.yaml
           !Code/bin/Debug
