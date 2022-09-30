@@ -15,11 +15,11 @@ placements.entities.MemorialHelper/ParallaxText.tooltips.textScalarY=The vertica
 placements.entities.MemorialHelper/ParallaxText.tooltips.color=The hexadecimal color code used for this text.
 placements.entities.MemorialHelper/ParallaxText.tooltips.borderColor=The hexadecimal color code use for the border of each letter.
 placements.entities.MemorialHelper/ParallaxText.tooltips.dialog=The dialog ID used to determine the displayed text.
-placements.entities.MemorialHelper/ParallaxText.tooltips.flag=The flag that must be set in order for this text to be shown.
+placements.entities.MemorialHelper/ParallaxText.tooltips.flag=The flag that must be set in order for this text to be shown. If empty, text will always display.
 placements.entities.MemorialHelper/ParallaxText.tooltips.border=Whether this text has a border.
 
 # Dash Sequence Flag
 placements.triggers.MemorialHelper/DashSequenceFlagTrigger.tooltips.sequence=A sequence of integers from 0 to 7 that define the dash code.\n0 = Left. 1 = Up-left. 2 = Up. 3 = Up-right. 4 = Right. 5 = Down-right. 6 = Down. 7 = Down-left.  
 placements.triggers.MemorialHelper/DashSequenceFlagTrigger.tooltips.flag=The flag that is activated or toggled when the dash code is performed.
-placements.triggers.MemorialHelper/DashSequenceFlagTrigger.tooltips.repeatable=Whether the dash code can be triggered more than once. This toggles the target flag each time the code is triggered.
-placements.triggers.MemorialHelper/DashSequenceFlagTrigger.tooltips.persistent=Whether this trigger can only be triggered once.
+placements.triggers.MemorialHelper/DashSequenceFlagTrigger.tooltips.repeatable=Whether the target flag should be toggled on and off each time the dash code is performed.
+placements.triggers.MemorialHelper/DashSequenceFlagTrigger.tooltips.persistent=If checked, the flag state will not be reset, even if the player dies.
