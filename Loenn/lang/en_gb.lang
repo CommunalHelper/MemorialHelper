@@ -1,0 +1,30 @@
+mods.MemorialHelper.name=Memorial Helper
+
+# Flag Crystal Heart
+entities.MemorialHelper/FlagCrystalHeart.placements.name.flag_crystal_heart=Flag Crystal Heart
+entities.MemorialHelper/FlagCrystalHeart.attributes.description.flag=The flag that must be set for the crystal heart to appear.
+entities.MemorialHelper/FlagCrystalHeart.attributes.description.fake=Whether the summoned heart is fake and should visually be grey. Triggers the Farewell fake heart cutscene.
+entities.MemorialHelper/FlagCrystalHeart.attributes.description.removeCameraTriggers=Whether the summoned heart should remove camera triggers once it is triggered. Only usable if fake attribute is set.
+
+# Parallax Text
+entities.MemorialHelper/ParallaxText.placements.name.parallax_text=Parallax Text
+entities.MemorialHelper/ParallaxText.attributes.description.offsetX=The horizontal offset position on the text.
+entities.MemorialHelper/ParallaxText.attributes.description.offsetY=The vertical offset position on the text.
+entities.MemorialHelper/ParallaxText.attributes.description.parallaxX=The horizontal parallax factor of the text.
+entities.MemorialHelper/ParallaxText.attributes.description.parallaxY=The vertical parallax factor of the text.
+entities.MemorialHelper/ParallaxText.attributes.description.visibleDistanceX=The minimum horizontal distance to the player required for the text to appear.
+entities.MemorialHelper/ParallaxText.attributes.description.visibleDistanceY=The minimum vertical distance to the player required for the text to appear.
+entities.MemorialHelper/ParallaxText.attributes.description.textScalarX=The horizontal scale factor on the text. Can be negative.
+entities.MemorialHelper/ParallaxText.attributes.description.textScalarY=The vertical scale factor on the text. Can be negative.
+entities.MemorialHelper/ParallaxText.attributes.description.color=The hexadecimal color code used for this text.
+entities.MemorialHelper/ParallaxText.attributes.description.borderColor=The hexadecimal color code use for the border of each letter.
+entities.MemorialHelper/ParallaxText.attributes.description.dialog=The dialog ID used to determine the displayed text.
+entities.MemorialHelper/ParallaxText.attributes.description.flag=The flag that must be set in order for this text to be shown. If empty, text will always display.
+entities.MemorialHelper/ParallaxText.attributes.description.border=Whether this text has a border.
+
+# Dash Sequence Flag
+triggers.MemorialHelper/DashSequenceFlagTrigger.placements.name.dash_sequence_flag=Dash Sequence Flag
+triggers.MemorialHelper/DashSequenceFlagTrigger.attributes.description.sequence=A sequence of integers from 0 to 7 that define the dash code.\n0 = Left. 1 = Up-left. 2 = Up. 3 = Up-right. 4 = Right. 5 = Down-right. 6 = Down. 7 = Down-left.  
+triggers.MemorialHelper/DashSequenceFlagTrigger.attributes.description.flag=The flag that is activated or toggled when the dash code is performed.
+triggers.MemorialHelper/DashSequenceFlagTrigger.attributes.description.repeatable=Whether the target flag should be toggled on and off each time the dash code is performed.
+triggers.MemorialHelper/DashSequenceFlagTrigger.attributes.description.persistent=If checked, the flag state will not be reset, even if the player dies.
