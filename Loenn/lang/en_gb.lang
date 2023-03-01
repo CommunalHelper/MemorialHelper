@@ -1,4 +1,4 @@
-mods.MemorialHelper.name=Memorial Helper
+mods.memorialHelper.name=Memorial Helper
 
 # Flag Crystal Heart
 entities.MemorialHelper/FlagCrystalHeart.placements.name.flag_crystal_heart=Flag Crystal Heart
